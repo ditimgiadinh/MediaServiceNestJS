@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=lENNmjT0nyI
+
 npm i -g @nestjs/cli
 
 
@@ -24,6 +26,8 @@ npm i --save @nestjs/microservices
 nest start catalog --watch
 
 nest start media --watch
+
+nest start search --watch
 
 npm i --save amqplib amqp-connection-manager
 

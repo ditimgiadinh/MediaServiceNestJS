@@ -1,12 +1,14 @@
 import { Controller, Get } from '@nestjs/common';
 import { MeadiaService } from './meadia.service';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller()
 export class MeadiaController {
   constructor(private readonly meadiaService: MeadiaService) {}
 
-  @Get()
-  getHello(): string {
-    return this.meadiaService.getHello();
-  }
+    @MessagePattern('service.ping')
+    ping(){
+        return this.meadiaService.ping;
+    }
+  
 }
