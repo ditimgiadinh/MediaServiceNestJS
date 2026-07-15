@@ -27,22 +27,13 @@
         "tsConfigPath": "apps/gateway/tsconfig.app.json"
       }
     },
-    "meadia": {
+    "media": {
       "type": "application",
-      "root": "apps/meadia",
+      "root": "apps/media",
       "entryFile": "main",
-      "sourceRoot": "apps/meadia/src",
+      "sourceRoot": "apps/media/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/meadia/tsconfig.app.json"
-      }
-    },
-    "meadia.": {
-      "type": "application",
-      "root": "apps/meadia.",
-      "entryFile": "main",
-      "sourceRoot": "apps/meadia./src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/meadia./tsconfig.app.json"
+        "tsConfigPath": "apps/media/tsconfig.app.json"
       }
     },
     "nestjs-microservices": {

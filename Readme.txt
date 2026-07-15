@@ -20,3 +20,18 @@ PS D:\antn\Admin\NodeJS\NestJS-Microservices\nestjs-microservices> nest g app me
 
 
 npm i --save @nestjs/microservices
+
+nest start catalog --watch
+
+nest start media --watch
+
+npm i --save amqplib amqp-connection-manager
+
+npm run start:dev media
+
+
+Get-ChildItem -Recurse -File | Select-String "dist/apps/meadia"
+
+Remove-Item -Recurse -Force dist
+
+nest build media
