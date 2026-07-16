@@ -29,6 +29,8 @@ nest start media --watch
 
 nest start search --watch
 
+nest start gateway --watch
+
 npm i --save amqplib amqp-connection-manager
 
 npm run start:dev media
@@ -39,3 +41,8 @@ Get-ChildItem -Recurse -File | Select-String "dist/apps/meadia"
 Remove-Item -Recurse -Force dist
 
 nest build media
+
+npm i @clerk/backend @nestjs/config mongoose @nestjs/mongoose
+
+
+nslookup -type=SRV _mongodb._tcp.cluster0.iiocoij.mongodb.net

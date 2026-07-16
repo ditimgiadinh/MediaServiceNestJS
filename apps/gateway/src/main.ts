@@ -1,4 +1,7 @@
 
+import * as dns from 'dns';
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 import { NestFactory } from '@nestjs/core';
 import { GatewayModule } from './gateway.module';
 import { Logger } from '@nestjs/common';

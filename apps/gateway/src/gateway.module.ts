@@ -2,9 +2,22 @@ import { Module } from '@nestjs/common';
 import { GatewayController } from './gateway.controller';
 import { GatewayService } from './gateway.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { UserModule } from './users/user.module';
 
 @Module({
   imports: [
+    // load .env into process.env -> simpler and also standard
+    ConfigModule.forRoot({
+      isGlobal : true
+    }),
+
+    MongooseModule.forRoot(process.env.MONGO_URI_USERS as string),
+
+    UserModule,
+
+
     ClientsModule.register(
       [
         {
