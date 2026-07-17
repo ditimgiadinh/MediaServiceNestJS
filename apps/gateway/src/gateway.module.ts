@@ -5,6 +5,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './users/user.module';
+import { AuthModule } from './auth/auth.module';
+import { ProductsHttpController } from './products/products.controller';
 
 @Module({
   imports: [
@@ -16,7 +18,7 @@ import { UserModule } from './users/user.module';
     MongooseModule.forRoot(process.env.MONGO_URI_USERS as string),
 
     UserModule,
-
+    AuthModule,  
 
     ClientsModule.register(
       [
@@ -50,7 +52,7 @@ import { UserModule } from './users/user.module';
       ]
     )
   ],
-  controllers: [GatewayController],
+  controllers: [GatewayController, ProductsHttpController],
   providers: [GatewayService],
 })
 export class GatewayModule {}
