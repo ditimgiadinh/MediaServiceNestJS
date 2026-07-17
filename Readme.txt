@@ -144,3 +144,5 @@ _mongodb._tcp.cluster0.iiocoij.mongodb.net      SRV service location:
 PS C:\WINDOWS\system32>
 
 -------------------------------------------
+
+npm i multer cloudinary

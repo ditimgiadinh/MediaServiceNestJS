@@ -1,10 +1,11 @@
-import { Body, Controller, Inject, Post } from "@nestjs/common";
+import { Body, Controller, Get, Inject, Param, Post } from "@nestjs/common";
 import { ClientProxy } from "@nestjs/microservices";
 import type { UserContext } from "../auth/auth.types"; // Antn =>type
 import { CurrentUser } from "../auth/current-user.decorator";
 import { mapRpcErrorToHttp } from "@app/rpc";
 import { firstValueFrom } from "rxjs";
 import { AdminOnly } from "../auth/admin.decorator";
+import { Public } from "../auth/public.decorator";
 
 
 type Product = {
@@ -40,6 +41,7 @@ export class ProductsHttpController {
       }
   ){
         // do the basic validation -> just for practice
+        console.log(body,'bodybodybody');
 
         let product: Product
 
@@ -62,4 +64,26 @@ export class ProductsHttpController {
         }
         return product;
   }
+
+    @Get('products')
+    @Public()
+    async listProducts() {
+    try {
+        return await firstValueFrom(this.catalogClient.send('product.list',{}))
+
+    } catch (err) {
+        mapRpcErrorToHttp(err)
+    }
+    }
+
+
+    @Get('products/:id')
+    @Public()
+    async getProduct(@Param('id') id: string) {
+    try {
+        return await firstValueFrom(this.catalogClient.send('product.getById',{id}))
+    } catch (err) {
+        mapRpcErrorToHttp(err)
+    }
+    }
 }
