@@ -39,7 +39,7 @@ export class ProductService {
                 imageUrl: input.imageUrl ?? '',
                 createdByClerkUserId: input.createdByClerkUserId
             })
-            return newlyCreatedProduct;
+            return newlyCreatedProduct.toJSON();
     }
 
     async listProducts() {

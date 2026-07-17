@@ -146,3 +146,24 @@ PS C:\WINDOWS\system32>
 -------------------------------------------
 
 npm i multer cloudinary
+
+npm i --save-dev @types/multer
+
+
+------------------------------------------------------------------------------------
+
+Nhìn vào cấu trúc project trong sidebar, tôi thấy bạn đã có nền tảng khá vững: catalog, gateway (với auth, products, users), media, và có vẻ còn search nữa (thấy trong ảnh trước). Đây là kiến trúc microservices e-commerce khá đầy đủ rồi.
+Trước khi đề xuất, bạn cho tôi biết mục tiêu chính của bạn để tôi ưu tiên đúng hướng:
+A. Học/luyện kỹ năng — thêm tính năng để hiểu sâu hơn về pattern microservices, event-driven, testing...
+B. Hoàn thiện thành sản phẩm demo/portfolio — thêm tính năng để dự án trông "đầy đủ" hơn khi show cho nhà tuyển dụng.
+C. Một tính năng cụ thể bạn đã nghĩ sẵn — ví dụ giỏ hàng, thanh toán, order, review sản phẩm...
+Dựa vào cấu trúc hiện tại (đã có catalog, auth, media, search), một vài hướng "xịn" tôi nghĩ tới ngay:
+
+Event-driven architecture đầy đủ — dùng RabbitMQ publish/subscribe (không chỉ request/response) để khi tạo sản phẩm ở catalog, tự động bắn event cho search reindex — đúng như bạn thấy tác giả có sẵn ProductEventsPubliser.
+Pagination + filter + search nâng cao cho GET /products (hiện tại chỉ list đơn giản).
+Order/Cart service mới — thêm 1 microservice nữa, tái sử dụng pattern RMQ đã quen.
+Rate limiting + caching (Redis) cho gateway.
+Swagger/OpenAPI docs tự động cho toàn bộ API.
+Unit test / E2E test cho các service quan trọng.
+
+------------------------------------------------------------------------------------

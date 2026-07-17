@@ -1,7 +1,9 @@
 import { NestFactory } from '@nestjs/core';
-import { MeadiaModule } from './meadia.module';
+import { MediaModule } from './media.module';
 import { Logger } from '@nestjs/common';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { applyToMicroserviceLayer } from '@app/rpc';
+
 
 async function bootstrap() {
   process.title = 'meadia';
@@ -15,7 +17,7 @@ async function bootstrap() {
  
   
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    MeadiaModule,
+    MediaModule,
     {
       transport : Transport.RMQ,
       options : {
@@ -27,6 +29,8 @@ async function bootstrap() {
       }
     }
   )
+
+  applyToMicroserviceLayer(app)
 
   app.enableShutdownHooks();
   await app.listen();
